@@ -5,21 +5,21 @@ const string = 'クタハムヰアケチヒモヲィコッャンイツヤウゥ�
 const characters = Array.from(string);
 const fontSize = 14;
 
-//full screen
+// full screen
 matrixContainer.width = window.innerWidth;
 matrixContainer.height = window.innerHeight;
 
 const columns = matrixContainer.width/fontSize;
 
-// an array of drops - one per column
+// an array of characters - one per column
 let items = [];
 // x below is the x coordinate
-// 1 = y-coordinate of the drop (same for every drop initially)
+// 1 = y-coordinate of the drop (same for every character initially)
 for (let x = 0; x < columns; x++) {
     items[x] = 1;
 }
 
-//Durstenfeld shuffle algorithm
+// Durstenfeld shuffle algorithm
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -48,8 +48,8 @@ function draw() {
     for (let i = 0; i < items.length; i++) {
         let text = characters[Math.floor(Math.random() * characters.length)];
         ctx.fillText(text, i * fontSize, items[i] * fontSize);
-        // sending the drop back to the top randomly after it has crossed the screen
-        // adding randomness to the reset to make the drops scattered on the Y axis
+        // sending the character back to the top randomly after it has crossed the screen
+        // adding randomness to the reset to make the characters scattered on the Y axis
         if (items[i] * fontSize > matrixContainer.height && Math.random() > 0.975)
             items[i] = 0;
         items[i]++;
